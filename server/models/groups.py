@@ -1,8 +1,17 @@
 from pydantic import BaseModel
+from typing import Optional
 
 
-class Group(BaseModel):
+class GroupCreate(BaseModel):
+    name: str
+    dishes: Optional[list[str]] = []
+    restrictions: Optional[list[str]] = []
+
+class GroupGetDelete(BaseModel):
     id: str
     name: str
-    dishes: list
-    restrictions: list
+    dishes: Optional[list[str]] 
+    restrictions: Optional[list[str]] 
+
+class Group(GroupCreate):
+    id: str

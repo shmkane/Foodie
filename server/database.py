@@ -16,7 +16,8 @@ async def shutdown_db_connection():
     await database.disconnect()
 
 async def create_group_table():
-    query = "CREATE TABLE IF NOT EXISTS groups (id INTEGER PRIMARY KEY, name TEXT, dishes TEXT, restrictions TEXT)"
+    query = "CREATE TABLE IF NOT EXISTS groups (id TEXT PRIMARY KEY, name TEXT, dishes TEXT, restrictions TEXT)"
     database = get_database();
 
     await database.execute(query)
+    
