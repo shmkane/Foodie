@@ -48,13 +48,10 @@ async def create_group(group: GroupCreate):
 
     created_group = await database.fetch_one(query=query, values=values)
 
-    print(created_group)
-
     if created_group is None:
         raise HTTPException(status_code=500, detail="Could not create group")
 
     created_group_dict = dict(created_group)
-    print(created_group_dict)
 
     created_group_dict["dishes"] = json.loads(created_group_dict["dishes"])
     created_group_dict["restrictions"] = json.loads(created_group_dict["restrictions"])
@@ -103,7 +100,6 @@ async def delete_group(group_id: int):
 async def delete_all_groups():
     query = "DELETE FROM groups"
     response = await database.execute(query)
-    print(response)
 
 # n groups deleted
     return {"message": f"{response} groups deleted"}
